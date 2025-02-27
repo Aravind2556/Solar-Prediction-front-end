@@ -17,6 +17,7 @@ const Navbar = () => {
     })
       .then(res => res.json())
       .then(data => {
+        alert(data.message)
         if (data.success === true) {
           navigate('/')
           window.location.reload()

@@ -37,7 +37,6 @@ export const Login = () => {
         if (data.success) {
           setDisplay(data.message);
           setAuth(data.user);
-          alert(data.message)
           window.location.reload();
         } else {
           setDisplay(data.message);
