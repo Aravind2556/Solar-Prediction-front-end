@@ -7,7 +7,7 @@ import  Navbar  from './components/Navbar'
 import Register from './components/createAccount/Register'
 
 
-import { Dashboard } from './components/NewDashboard'
+import { Dashboard } from './components/NewDashboardFilter'
 import { DContext } from './context/Datacontext'
 
 

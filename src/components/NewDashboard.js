@@ -3,6 +3,15 @@ import LiveChart from './LiveChart'
 
 export const Dashboard = () => {
 
+    let currentDate = new Date();
+    let currentMonth = currentDate.getMonth();
+    let currentYear = currentDate.getFullYear()
+
+    const monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ]
+
     const [temperature, setTemperature] = useState(null)
     const [humidity, setHumidity] = useState(null)
     const [lightLevel, setLightLevel] = useState(null)
@@ -27,13 +36,6 @@ export const Dashboard = () => {
 
         const url = "https://api.thingspeak.com/channels/2830467/feeds.json?api_key=CY6O3R3DVLDLEQEP";
 
-        const fields = [
-            { key: "field1", name: "Temperature", color: "black" },
-            { key: "field2", name: "Humidity", color: "blue" },
-            { key: "field3", name: "Light Level", color: "yellow" },
-            { key: "field4", name: "Solar Voltage", color: "green" },
-            { key: "field5", name: "Wind Speed", color: "red" }
-        ]
 
         fetch(url)
         .then(res=>res.json())
@@ -94,13 +96,22 @@ export const Dashboard = () => {
     return () => clearInterval(intervalId); // Cleanup on component unmount
   }, []);
 
+
+
+
   if(!temperature || !humidity || !lightLevel || !solarVoltage || !windSpeed){
     return <div>Loading...</div>
   }
 
   return (
     <div className="container">
-      <h1 className="text-center text-primary my-3">Solar Prediction Dashboard</h1>
+      <h1 className="text-center text-primary my-3 fs-2">Solar Prediction Dashboard</h1>
+
+      <div className="d-flex flex-wrap gap-2 justify-content-center align-items-center my-3">
+        <button className="btn btn-outline-primary" onClick={()=>{}} title="Previous month">Prev</button>
+        <span className="text-primary p-2 fw-bolder">{monthNames[currentMonth]}</span>
+        <button className="btn btn-outline-primary" onClick={()=>{}} title="Next month">Next</button>
+      </div>
 
       
 
@@ -116,19 +127,6 @@ export const Dashboard = () => {
                 )
             })
         }
-
-      
-        {/* <div className="col-11 col-md-10 col-lg-5 col-xl-3 m-2 border rounded" key={index} style={{ marginBottom: "20px" }}>
-            <h3 className="bg-primary text-light rounded-top p-2">{chart.name}</h3>
-            <div className="px-2">
-            <ApexCharts
-                options={chart.options}
-                series={[{ name: chart.name, data: chart.data }]}
-                type="line"
-                height={300}
-            />
-            </div>
-        </div> */}
 
       </div>
     </div>

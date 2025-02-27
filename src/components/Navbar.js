@@ -37,7 +37,7 @@ const Navbar = () => {
         {/* Logo / Brand */}
 
       
-        <a className="navbar-brand fw-bold border border-primary rounded text-primary px-2" href="/">
+        <a className="navbar-brand fw-bold text-primary px-2" href="/">
           Solar Prediction
         </a> 
        
